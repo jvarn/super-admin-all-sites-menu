@@ -1,4 +1,5 @@
 # Super Admin All Sites Menu
+* Note:* Private branch for compatibility with [custom network site info field plugin](https://github.com/jvarn/custom-network-site-info-field).
 
 > Also available at https://wordpress.org/plugins/super-admin-all-sites-menu/
 
