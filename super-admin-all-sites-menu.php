@@ -12,7 +12,7 @@
  * Plugin URI: https://github.com/soderlind/super-admin-all-sites-menu
  * GitHub Plugin URI: https://github.com/soderlind/super-admin-all-sites-menu
  * Description: For the super admin, replace WP Admin Bar My Sites menu with an All Sites menu.
- * Version:     1.6.1
+ * Version:     1.6.1a
  * Author:      Per Soderlind
  * Network:     true
  * Author URI:  https://soderlind.no
@@ -360,14 +360,16 @@ class SuperAdminAllSitesMenu {
 		foreach ( $sites as $site ) {
 
 			$blogid   = $site->blog_id;
-			$blogname = $site->__get( 'blogname' );
+			$defaultblogname = $site->__get( 'blogname' );
+			$blogname = get_site_meta( $blogid, 'blog_custom_field', true ); // jlv
 			$menu_id  = 'blog-' . $blogid;
 			$blavatar = '<div class="blavatar"></div>';
+			
 			$siteurl  = $site->__get( 'siteurl' );
 			$adminurl = $siteurl . '/wp-admin';
 
 			if ( ! $blogname ) {
-				$blogname = preg_replace( '#^(https?://)?(www.)?#', '', $siteurl );
+				$blogname = ( $defaultblogname ? $defaultblogname : preg_replace( '#^(https?://)?(www.)?#', '', $siteurl ) );
 			}
 
 			// The $site->public value is set to 2, by the Restricted Site Access plugin, when a site has restricted access.
